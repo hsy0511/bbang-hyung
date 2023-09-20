@@ -69,6 +69,9 @@
 
 ![image](https://github.com/hsy0511/bbang-hyung/assets/104752580/271be64f-75c0-4b85-a81e-d7107155d2bf)
 
+![image](https://github.com/hsy0511/bbang-hyung/assets/104752580/99eb3bc8-39d4-492b-ae3d-dba21422f642)
+
 ![image](https://github.com/hsy0511/bbang-hyung/assets/104752580/8efc191e-d59a-4bfa-a85e-1349552044cd)
 
 ![image](https://github.com/hsy0511/bbang-hyung/assets/104752580/5bba2ebf-f151-4913-87dd-1cd60f462eb3)
+
