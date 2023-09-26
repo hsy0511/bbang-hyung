@@ -8,12 +8,20 @@
 ![image](https://github.com/hsy0511/bbang-hyung/assets/104752580/b17fa33b-ef56-4871-a5ef-e53b583a9006)
 ## Iris 붓꽃 데이터셋
 ![image](https://github.com/hsy0511/bbang-hyung/assets/104752580/4f7dcd4b-4f22-42f9-85e9-79905d548531)
+
+데이터 셋 3개가 주어진다.
 ## Iris 데이터셋 로드하고 살펴보기
 ![image](https://github.com/hsy0511/bbang-hyung/assets/104752580/a0fe78de-9ab4-4f6b-90ad-c1bd6a2629f1)
+
+iris 꽃에 key 값을 딕셔너리 형태로 나타내어 살펴본다.
 ## features 특징 (=x)
 ![image](https://github.com/hsy0511/bbang-hyung/assets/104752580/2dbe9ed3-8b8a-487a-b5de-8365276fca22)
+
+함수 y = f(x)에 해당하는 특징 x 값을 나타낸다.
 ## target 정답 (=y)
 ![image](https://github.com/hsy0511/bbang-hyung/assets/104752580/010fbf5f-41d4-4568-b774-4b44eff609d3)
+
+함수 y = f(x)에 해당하는 정답 y값을 나타낸다.
 ## dataframe 변환
 ![image](https://github.com/hsy0511/bbang-hyung/assets/104752580/642b0ea5-63bf-47b4-8979-ce6015eae11b)
 
@@ -23,6 +31,7 @@
 
 ![image](https://github.com/hsy0511/bbang-hyung/assets/104752580/e38a6596-d79c-4d5d-bd0c-926ff9b28307)
 
+판다스 패키지를 사용하여 데이터 셋들을 데이터 프레임 형태로 변환한다.
 ## 데이터셋 시각화
 ![image](https://github.com/hsy0511/bbang-hyung/assets/104752580/d8c16fc2-262e-4169-aa36-4a4194bdeb12)
 ## 꽃받침의 길이와 너비에 따른 라벨 분포
