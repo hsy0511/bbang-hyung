@@ -109,25 +109,17 @@ y 훈련데이터에서 가장 상위 5개의 데이터를 나타낸다.
 
 # 2강 분류
 ## 데이터셋 전처리
-![image](https://github.com/hsy0511/bbang-hyung/assets/104752580/ba2301dd-7258-4b1f-8a88-a404e5d8f6bb)
+
 ## 정규화 Normalization
-![image](https://github.com/hsy0511/bbang-hyung/assets/104752580/fb865f02-b3a8-43b6-8f68-7345926ce176)
+
 ## Iris 데이터셋에서 정규화
-![image](https://github.com/hsy0511/bbang-hyung/assets/104752580/cb3d3c08-0ed5-47ab-8cc5-437c72e13749)
 
-![image](https://github.com/hsy0511/bbang-hyung/assets/104752580/c49935e1-cad9-4167-8e5e-d8361b20e32f)
 ## 표준화 Standardization
-![image](https://github.com/hsy0511/bbang-hyung/assets/104752580/22be7396-74e8-445d-aa3b-ac8ae2b36f16)
+
 ## Iris 데이터셋에서 표준화
-![image](https://github.com/hsy0511/bbang-hyung/assets/104752580/0dc38242-a885-4fcc-a6c6-aeac8d80031b)
 
-![image](https://github.com/hsy0511/bbang-hyung/assets/104752580/e46d2edb-a58d-4f5b-84ad-97ea34def543)
 ## 인코딩 Encoding
-![image](https://github.com/hsy0511/bbang-hyung/assets/104752580/43a70036-f21e-467d-8b82-85fad37d2316)
 
-![image](https://github.com/hsy0511/bbang-hyung/assets/104752580/1d1641d9-9db5-4a6a-8f3e-e0c9799f206f)
-
-![image](https://github.com/hsy0511/bbang-hyung/assets/104752580/2c927ff8-1be2-49ed-a3e0-a79893484012)
 ## Null, NaN 삭제
 # 3강 회귀
 
