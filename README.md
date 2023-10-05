@@ -149,6 +149,38 @@ y 훈련데이터에서 가장 상위 5개의 데이터를 나타낸다.
 - 검증
 - 최적의 k 검색
 
+## 연습해볼만한 데이터셋 소개
+### Scikit-learn Sample Datasets
+https://scikit-learn.org/stable/datasets/toy_dataset.html
+
+- load_boston(*[, return_X_y])
+Load and return the boston house-prices dataset (regression).
+
+- load_iris(*[, return_X_y, as_frame])
+Load and return the iris dataset (classification).
+
+- load_diabetes(*[, return_X_y, as_frame])
+Load and return the diabetes dataset (regression).
+
+- load_digits(*[, n_class, return_X_y, as_frame])
+Load and return the digits dataset (classification).
+
+- load_linnerud(*[, return_X_y, as_frame])
+Load and return the physical excercise linnerud dataset.
+
+- load_wine(*[, return_X_y, as_frame])
+Load and return the wine dataset (classification).
+
+- load_breast_cancer(*[, return_X_y, as_frame])
+Load and return the breast cancer wisconsin dataset (classification).
+### Seaborn Sample Datasets
+https://github.com/mwaskom/seaborn-data
+
+- car_crashes: https://www.kaggle.com/fivethirtyeight/fivethirtyeight-bad-drivers-dataset
+- dots: https://shadlenlab.columbia.edu/resources/RoitmanDataCode.html
+- fmri: https://github.com/mwaskom/Waskom_CerebCortex_2017
+- penguins: https://github.com/allisonhorst/penguins
+- planets: https://exoplanets.nasa.gov/exoplanet-catalog/
 # 3강 회귀
 
 # 4강 논리 회귀와 의사결정나무
