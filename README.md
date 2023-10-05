@@ -153,30 +153,25 @@ y 훈련데이터에서 가장 상위 5개의 데이터를 나타낸다.
 https://scikit-learn.org/stable/datasets/toy_dataset.html
 
 - load_boston(*[, return_X_y])
-○ Load and return the boston house-prices dataset (regression).
+  - Load and return the boston house-prices dataset (regression).
 
 - load_iris(*[, return_X_y, as_frame])
-○ Load and return the iris dataset (classification).
+  - Load and return the iris dataset (classification).
 
 - load_diabetes(*[, return_X_y, as_frame])
-
-○ Load and return the diabetes dataset (regression).
+  - Load and return the diabetes dataset (regression).
 
 - load_digits(*[, n_class, return_X_y, as_frame])
-
-○ Load and return the digits dataset (classification).
+  - Load and return the digits dataset (classification).
 
 - load_linnerud(*[, return_X_y, as_frame])
-
-○ Load and return the physical excercise linnerud dataset.
+  - Load and return the physical excercise linnerud dataset.
 
 - load_wine(*[, return_X_y, as_frame])
-
-○ Load and return the wine dataset (classification).
+  - Load and return the wine dataset (classification).
 
 - load_breast_cancer(*[, return_X_y, as_frame])
-
-○ Load and return the breast cancer wisconsin dataset (classification).
+  - Load and return the breast cancer wisconsin dataset (classification).
 ### Seaborn Sample Datasets
 https://github.com/mwaskom/seaborn-data
 
