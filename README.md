@@ -148,7 +148,7 @@ y 훈련데이터에서 가장 상위 5개의 데이터를 나타낸다.
 - 모델 정의, 학습
 - 검증
 - 최적의 k 검색
-
+## 연습해볼만한 데이터셋 소개
 ### Scikit-learn Sample Datasets
 https://scikit-learn.org/stable/datasets/toy_dataset.html
 
