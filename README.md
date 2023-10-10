@@ -107,7 +107,6 @@ x 훈련데이터에서 가장 상위 5개의 데이터를 나타낸다.
 
 y 훈련데이터에서 가장 상위 5개의 데이터를 나타낸다.
 
-# 2강 분류
 ## 데이터셋 전처리
 ![image](https://github.com/hsy0511/bbang-hyung/assets/104752580/47172187-2556-47d8-ac69-547831f796c7)
 
@@ -173,7 +172,7 @@ scaled[:5]
 
 ![image](https://github.com/hsy0511/bbang-hyung/assets/104752580/1dd5c1d9-302b-41cc-99d9-181016e31453)
 
-데이터 프레임으로 나타낸다.
+- 정규화 데이터 프레임으로 변환
 
 ```python
 x_train_scaled = pd.DataFrame(data=scaled, columns=iris['feature_names'])
@@ -236,7 +235,7 @@ scaled[:5]
 
 ![image](https://github.com/hsy0511/bbang-hyung/assets/104752580/78163a12-3794-4572-a67f-e27f81cbb498)
 
-데이터 프레임으로 변환
+- 표준화 데이터 프레임으로 변환
 
 ```python
 x_train_scaled = pd.DataFrame(data=scaled, columns=iris['feature_names'])
@@ -375,32 +374,6 @@ inversed
 
 ![image](https://github.com/hsy0511/bbang-hyung/assets/104752580/0efdca35-eda4-42e5-854d-293f61d20770)
 
-## 간단한 분류기의 예
-
-## SVM 실습
-
-### SVM 실습 1. Iris 데이터셋을 이용한 실습
-- 데이터셋 로드
-- 전처리
-- 모델정의
-- 학습 Training
-- 검증 Validation
-
-### SVM 실습 2. MANIST 데이터셋을 이용한 실습
-- 데이터셋 로드
-- 데이터 시각화
-- 데이터 전처리 - 정규화
-- 데이터 전처리 - 데이터셋 분할
-- 학습, 검증
-- 검증 결과 시각화
-## KNN 실습
-
-## 샘플 데이터로 KNN 이해하기
-
-## MNIST 데이터셋을 이용한 실습
-- 모델 정의, 학습
-- 검증
-- 최적의 k 검색
 ## 연습해볼만한 데이터셋 소개
 ### Scikit-learn Sample Datasets
 https://scikit-learn.org/stable/datasets/toy_dataset.html
@@ -433,6 +406,34 @@ https://github.com/mwaskom/seaborn-data
 - fmri: https://github.com/mwaskom/Waskom_CerebCortex_2017
 - penguins: https://github.com/allisonhorst/penguins
 - planets: https://exoplanets.nasa.gov/exoplanet-catalog/
+# 2강 분류
+## 간단한 분류기의 예
+
+## SVM 실습
+
+### SVM 실습 1. Iris 데이터셋을 이용한 실습
+- 데이터셋 로드
+- 전처리
+- 모델정의
+- 학습 Training
+- 검증 Validation
+
+### SVM 실습 2. MANIST 데이터셋을 이용한 실습
+- 데이터셋 로드
+- 데이터 시각화
+- 데이터 전처리 - 정규화
+- 데이터 전처리 - 데이터셋 분할
+- 학습, 검증
+- 검증 결과 시각화
+## KNN 실습
+
+## 샘플 데이터로 KNN 이해하기
+
+## MNIST 데이터셋을 이용한 실습
+- 모델 정의, 학습
+- 검증
+- 최적의 k 검색
+
 # 3강 회귀
 
 # 4강 논리 회귀와 의사결정나무
