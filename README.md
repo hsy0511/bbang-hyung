@@ -770,6 +770,7 @@ for k in range(1, 11):
 
 ![image](https://github.com/hsy0511/bbang-hyung/assets/104752580/2116425e-1a2f-4c76-9b15-073f10498073)
 
+
 # 3강 회귀
 
 # 4강 논리 회귀와 의사결정나무
