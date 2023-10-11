@@ -671,26 +671,49 @@ k = 3
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.datasets import make_classification
 import random
+// KNeighborsClassifier, make_classification, random 패키지를 가져온다.
+// make_classification 패키지는 분류 문제에 대한 가상의 데이터셋을 생성한다.
 
 x, y = make_classification(n_samples=100, n_features=2, n_informative=2, n_redundant=0, random_state=1)
+// n_samples: 생성할 데이터 포인트의 총 수
+// n_features: 각 데이터 포인트가 가질 특성 또는 열의 수
+// n_informative: 클래스와 관련된 유용한 정보를 가진 특성의 수
+// n_redundant: 클래스와 관련이 없는 중복 특성의 수
+// n_classes: 생성할 클래스의 수
+// random_state: 데이터를 생성하기 위한 무작위 시드
 
 red = x[y == 0]
 blue = x[y == 1]
+// x 데이터에서 y가 0이면 red, 1이면 blue가 나오게 한다.
 
 new_input = [[random.uniform(-2, 2), random.uniform(-2, 2)]]
+// -2부터 2 사이의 실수 중에서 난수값을 리턴
 
 plt.figure(figsize=(10, 10))
+// 가로 10 세로 10짜리 차트를 만든다.
+
 plt.scatter(x=red[:, 0], y=red[:, 1], c='r')
 plt.scatter(x=blue[:, 0], y=blue[:, 1], c='b')
+// red 데이터는 빨간색으로 나타내고 blue 데이터는 파란 데이터로 나타낸다.
 
 model = KNeighborsClassifier(n_neighbors=3)
+// 모델 정의
+
 model.fit(x, y)
+// 모델 훈련
+
 pred = model.predict(new_input)
+// 모델 값 예측
 
 pred_label = 'red' if pred == 0 else 'blue'
+// 모델 예측값이 0이면 red를 표기하고 아니면 blue를 표기한다.
 
 plt.scatter(new_input[0][0], new_input[0][1], 100, 'g')
+// new_input[0][0], new_input[0][1] 위치에 산점도 사이즈가 100인 초록색 점을 표기한다
+
 plt.annotate(pred_label, xy=new_input[0], fontsize=16)
+// plt.annotate : 주석 함수
+// xy 위치에 pred_label 글자를 16 사이즈 폰트로 주석을 단다.
 
 plt.show()
 ```
