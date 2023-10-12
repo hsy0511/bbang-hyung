@@ -772,6 +772,369 @@ for k in range(1, 11):
 
 
 # 3강 회귀
+### 목차
+- 회귀 Regressor 소개
+- 선형 회귀 Linear Regression 실습
+## 분류와 회귀
+### 강아지와 고양이 구분
+강아지와 고양이의 중간은 없다.
+
+### 부동산 가격 예측
+부동산 가격은 연속적인 실수로 나타낼 수 있다.
+- 1000만원
+- 1001만원
+- 1억 2500만원
+- 51억 4123만원
+## 선형회귀 실습
+### 보스턴 집 값 데이터셋을 이용한 실습
+#### 데이터셋 로드
+- CRIM: 범죄율
+- ZN: 25,000평방 피트 당 주거용 토지의 비율
+- INDUS: 비소매 비즈니스 면적 비율
+- CHAS: 찰스 강 더미 변수 (통로가 하천을 향하면 1; 그렇지 않으면 0)
+- NOX: 산화 질소 농도 (1000만 분의 1)
+- RM: 평균 방의 개수
+- AGE: 1940년 이전에 건축된 자가 소유 점유 비율
+- DIS: 5개의 보스턴 고용 센터까지의 가중 거리
+- RAD: 고속도로 접근성 지수
+- TAX: 10,000달러 당 전체 가치 재산 세율
+- PTRATIO 도시별 학생-교사 비율
+- B: 1000 (Bk-0.63) ^ 2 (Bk는 도시별 검정 비율)
+- LSTAT: 인구의 낮은 지위
+- target: 자가 주택의 중앙값 (1,000달러 단위)
+
+```python
+from sklearn.datasets import load_boston
+import pandas as pd
+
+data = load_boston()
+
+df = pd.DataFrame(data['data'], columns=data['feature_names'])
+df['target'] = data['target']
+
+df.tail()
+```
+
+![image](https://github.com/hsy0511/bbang-hyung/assets/104752580/78b583c1-2847-4a19-955d-8c0e40e0a7a0)
+
+#### 데이터 시각화
+- Distribution plot
+
+```python
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+sns.displot(x=df['target'])
+plt.show()
+```
+
+![image](https://github.com/hsy0511/bbang-hyung/assets/104752580/a87fe7de-76ec-405e-8082-dcb302ad0290)
+
+- correlation matrix
+
+```python
+plt.figure(figsize=(10, 10))
+corr = df.corr()
+sns.heatmap(corr, annot=True, square=True, cmap='PiYG', vmin=-1, vmax=1)
+plt.show()
+```
+
+![image](https://github.com/hsy0511/bbang-hyung/assets/104752580/dd74eb7f-9f3b-4fbc-8cbc-c4b14c2e512f)
+
+#### 데이터셋 분할
+```python
+from sklearn.model_selection import train_test_split
+
+x_train, x_val, y_train, y_val = train_test_split(df.drop(columns=['target']), df['target'], test_size=0.2, random_state=2021)
+
+print(x_train.shape, y_train.shape)
+print(x_val.shape, y_val.shape)
+```
+
+![image](https://github.com/hsy0511/bbang-hyung/assets/104752580/993287b4-69ea-433a-a7c4-0a802aabc1a8)
+
+#### 모델 정의
+```python
+from sklearn.linear_model import LinearRegression
+
+model = LinearRegression()
+```
+#### 학습
+```python
+model.fit(x_train, y_train)
+```
+#### 검증
+```python
+x_val[:5]
+```
+
+![image](https://github.com/hsy0511/bbang-hyung/assets/104752580/20957ee3-d857-40d7-8166-6dd5f43520d4)
+
+```python
+y_pred = model.predict(x_val)
+
+print(y_pred[:5])
+```
+
+![image](https://github.com/hsy0511/bbang-hyung/assets/104752580/1b945e6d-d6ac-41c7-843f-3a1dc488be1c)
+
+#### 회귀에서의 정확도는 어떻게 구할 수 있을까?
+- 정답값과 예측값이 차이가 작으면 정확도가 높다
+- 정답값과 예측값의 차이가 크면 정확도가 낮다
+
+```python
+print(list(y_val[:5]))
+
+print(list(y_pred[:5]))
+```
+
+![image](https://github.com/hsy0511/bbang-hyung/assets/104752580/6d1602bb-3e9e-461a-8043-fcaacf923cd6)
+
+```python
+y_val[:5] - y_pred[:5]
+```
+
+![image](https://github.com/hsy0511/bbang-hyung/assets/104752580/b7b97f4e-bb7e-43fa-b3be-b7faf1dbe941)
+
+```python
+abs(y_val[:5] - y_pred[:5])
+```
+
+![image](https://github.com/hsy0511/bbang-hyung/assets/104752580/e9322218-b204-44a9-9fc6-03a65ce4f9cd)
+
+#### Mean Absolute Error
+- MAE
+- 정답과 예측값 차이의 절대값의 평균
+
+```python
+abs(y_val[:5] - y_pred[:5]).mean()
+```
+
+![image](https://github.com/hsy0511/bbang-hyung/assets/104752580/3a4d443b-f7e3-4f55-9b44-893f6b09ed81)
+
+```python
+abs(y_val - y_pred).mean()
+```
+
+![image](https://github.com/hsy0511/bbang-hyung/assets/104752580/7988b70b-9892-4fd8-bf3f-59c91c4ef58a)
+
+```python
+from sklearn.metrics import mean_absolute_error
+
+mean_absolute_error(y_val, y_pred)
+```
+
+![image](https://github.com/hsy0511/bbang-hyung/assets/104752580/9acba601-5c6d-4068-a9c6-2948058749c3)
+
+#### Mean Squared Error
+- MSE
+- 정답과 예측값 차이의 제곱의 평균
+
+```python
+((y_val - y_pred) ** 2).mean()
+```
+
+![image](https://github.com/hsy0511/bbang-hyung/assets/104752580/b36b829f-11b1-4eb1-aa06-ff12fd7ac77b)
+
+```python
+from sklearn.metrics import mean_squared_error
+
+mean_squared_error(y_val, y_pred)
+```
+
+![image](https://github.com/hsy0511/bbang-hyung/assets/104752580/bbb445e0-b02f-43d8-b387-00c17a5a2743)
+
+#### 표준화
+```python
+from sklearn.preprocessing import StandardScaler
+
+scaler = StandardScaler()
+
+x_train_scaled = scaler.fit_transform(x_train)
+x_val_scaled = scaler.fit_transform(x_val)
+
+print(x_train_scaled[:5])
+```
+
+![image](https://github.com/hsy0511/bbang-hyung/assets/104752580/98c6f379-4e65-4fd3-a7a2-48516aabfb3a)
+
+```python
+model = LinearRegression()
+
+model.fit(x_train_scaled, y_train)
+
+y_pred = model.predict(x_val_scaled)
+
+mean_absolute_error(y_val, y_pred)
+```
+
+![image](https://github.com/hsy0511/bbang-hyung/assets/104752580/fcf51783-e3e1-4912-9ead-a6dd2992d4b7)
+
+#### 정규화
+```python
+from sklearn.preprocessing import MinMaxScaler
+
+scaler = MinMaxScaler()
+
+x_train_scaled = scaler.fit_transform(x_train)
+x_val_scaled = scaler.fit_transform(x_val)
+
+print(x_train_scaled[:5])
+```
+
+![image](https://github.com/hsy0511/bbang-hyung/assets/104752580/afd255f7-f357-4083-aff6-eacf52a5ed7f)
+
+```python
+model = LinearRegression()
+
+model.fit(x_train_scaled, y_train)
+
+y_pred = model.predict(x_val_scaled)
+
+mean_absolute_error(y_val, y_pred)
+```
+
+![image](https://github.com/hsy0511/bbang-hyung/assets/104752580/3ae7ebb8-5ce6-40ae-8fa9-fb5ad9f2d737)
+
+### Linear Regression (선형회귀)
+![image](https://github.com/hsy0511/bbang-hyung/assets/104752580/399937d7-e4ae-4e42-9a10-acbca1922e0e)
+
+### Ridge Regression 맛보기
+학습이 과대적합 되는 것을 방지하기위해 패널티를 부여한다. (L2 Regularazation)
+
+용어를 몰라도 문서를 보고 다른 알고리즘을 사용하는 방법을 익혀보자.
+
+- 링크 : linear_model의 모델들이 나온다.
+
+https://scikit-learn.org/stable/modules/classes.html#module-sklearn.linear_model
+
+![image](https://github.com/hsy0511/bbang-hyung/assets/104752580/5665bd7b-6452-407e-b785-f7841cd1a047)
+
+![image](https://github.com/hsy0511/bbang-hyung/assets/104752580/c0d86cd9-5aa7-4013-8b27-642b60918c35)
+
+![image](https://github.com/hsy0511/bbang-hyung/assets/104752580/65beea58-112b-4c20-aa22-b5d6bbced63e)
+
+```python
+from sklearn.linear_model import Ridge
+
+model = Ridge()
+
+model.fit(x_train, y_train)
+
+y_pred = model.predict(x_val)
+
+mean_absolute_error(y_val, y_pred)
+```
+
+![image](https://github.com/hsy0511/bbang-hyung/assets/104752580/d8780000-77e7-4a8e-9b72-a1c6eddfc3f0)
+
+### 당뇨병 데이터셋을 이용한 실습
+- 링크 : 당뇨병에 대한 데이터셋이 나온다.
+
+https://scikit-learn.org/stable/datasets/toy_dataset.html#diabetes-dataset
+
+![image](https://github.com/hsy0511/bbang-hyung/assets/104752580/c2b16cdd-ab7a-4740-a1ef-a9dd3ad1d112)
+
+#### 데이터셋 로드
+- age: 나이
+- sex: 성별
+- bmi: BMI 체질량지수
+- bp: 평균 혈압
+- s1 tc: 총 혈청 콜레스테롤
+- s2 ldl: 저밀도 지방단백질
+- s3 hdl: 고밀도 지방단백질
+- s4 tch: 총 콜레스테롤 / HDL
+- s5 ltg: 혈청 트리글리세리드 수치의 로그
+- s6 glu: 혈당 수치
+- target: 1년 후 당뇨병 진행도
+
+```python
+from sklearn.datasets import load_diabetes
+import pandas as pd
+
+data = load_diabetes()
+
+df = pd.DataFrame(data['data'], columns=data['feature_names'])
+df['target'] = data['target']
+
+df.head()
+```
+
+![image](https://github.com/hsy0511/bbang-hyung/assets/104752580/d0f4defe-71d8-4bdd-b7bf-7c5fb532a443)
+
+#### 데이터 시각화
+- 이미 표준화가 되어 있는 데이터셋
+
+```python
+sns.boxplot(y=df['age'])
+```
+
+![image](https://github.com/hsy0511/bbang-hyung/assets/104752580/65ac2b9c-3719-4707-9d40-27e07c4fac27)
+
+```python
+sns.displot(x=df['target'])
+plt.show()
+```
+
+![image](https://github.com/hsy0511/bbang-hyung/assets/104752580/c1c60702-d69c-4a27-bb97-ea6d8724a90a)
+
+```python
+plt.figure(figsize=(10, 10))
+corr = df.corr()
+sns.heatmap(corr, annot=True, square=True, cmap='PiYG', vmin=-1, vmax=1)
+plt.show()
+```
+
+![image](https://github.com/hsy0511/bbang-hyung/assets/104752580/003922a6-c7c4-4e11-8c31-d234746392a9)
+
+#### 데이터셋 분할
+```python
+from sklearn.model_selection import train_test_split
+
+x_train, x_val, y_train, y_val = train_test_split(df.drop(columns=['target']), df['target'], test_size=0.2, random_state=2021)
+
+print(x_train.shape, y_train.shape)
+print(x_val.shape, y_val.shape)
+```
+
+![image](https://github.com/hsy0511/bbang-hyung/assets/104752580/18921f4a-fb6a-4598-bee2-a638774f49fd)
+
+#### 모델 정의, 학습, 검증
+```python
+from sklearn.linear_model import SGDRegressor
+
+model = SGDRegressor()
+
+model.fit(x_train, y_train)
+
+y_pred = model.predict(x_val)
+
+mean_absolute_error(y_val, y_pred)
+```
+
+![image](https://github.com/hsy0511/bbang-hyung/assets/104752580/bf17b068-f0c0-4970-837d-5991bb646bf5)
+
+```python
+model = LinearRegression()
+
+model.fit(x_train, y_train)
+
+y_pred = model.predict(x_val)
+
+mean_absolute_error(y_val, y_pred)
+```
+
+![image](https://github.com/hsy0511/bbang-hyung/assets/104752580/6eeb6162-f645-40dd-aa5a-d5377ce2205a)
+
+#### 검증 결과 시각화
+```python
+plt.figure(figsize=(8, 6))
+sns.scatterplot(x=x_val['bmi'], y=y_val, color='b')
+sns.scatterplot(x=x_val['bmi'], y=y_pred, color='r')
+plt.show()
+```
+
+![image](https://github.com/hsy0511/bbang-hyung/assets/104752580/b4870b65-7c81-4bf7-9e05-8632dbade10c)
 
 # 4강 논리 회귀와 의사결정나무
 
