@@ -1,6 +1,6 @@
 # bbang-hyung
 
-https://github.com/hsy0511/bbang-hyung/blob/main/README.md#%EB%AA%A8%EB%8D%B8-%EC%A0%95%EC%9D%98-%ED%95%99%EC%8A%B5-%EA%B2%80%EC%A6%9D
+
 
 # 1강 머신러닝 데이터셋
 ## colab 노트북 복사하는 방법
