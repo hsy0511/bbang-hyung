@@ -1060,7 +1060,7 @@ df['target'] = data['target']
 df.head()
 ```
 
-![image](https://github.com/hsy0511/bbang-hyung/assets/104752580/d0f4defe-71d8-4bdd-b7bf-7c5fb532a443)
+![image](https://github.com/hsy0511/bbang-hyung/assets/104752580/379e1ede-1ec4-4182-80cc-6da83303beb8)
 
 #### 데이터 시각화
 - 이미 표준화가 되어 있는 데이터셋
