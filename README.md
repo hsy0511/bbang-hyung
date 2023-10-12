@@ -1,4 +1,5 @@
 # bbang-hyung
+### [1강 머신러닝 데이터셋](https://github.com/hsy0511/bbang-hyung/blob/main/README.md#1%EA%B0%95-%EB%A8%B8%EC%8B%A0%EB%9F%AC%EB%8B%9D-%EB%8D%B0%EC%9D%B4%ED%84%B0%EC%85%8B)
 
 
 
