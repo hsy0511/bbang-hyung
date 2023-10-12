@@ -1112,7 +1112,7 @@ y_pred = model.predict(x_val)
 mean_absolute_error(y_val, y_pred)
 ```
 
-![image](https://github.com/hsy0511/bbang-hyung/assets/104752580/af1b2c41-46df-4ae5-8764-5a2795bd542c)
+![image](https://github.com/hsy0511/bbang-hyung/assets/104752580/1d26efe7-48c3-4120-9d08-f3e5e4413fa3)
 
 ```python
 model = LinearRegression()
