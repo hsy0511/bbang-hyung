@@ -941,23 +941,28 @@ abs(y_val[:5] - y_pred[:5])
 #### Mean Absolute Error
 - MAE
 - 정답과 예측값 차이의 절대값의 평균
+- 정확도를 알기위해서(작을수록 정확도가 높다)
 
 ```python
 abs(y_val[:5] - y_pred[:5]).mean()
+// 0~4까지 절대값의 평균을 나타낸다.
 ```
 
 ![image](https://github.com/hsy0511/bbang-hyung/assets/104752580/3a4d443b-f7e3-4f55-9b44-893f6b09ed81)
 
 ```python
 abs(y_val - y_pred).mean()
+// 전체 데이터 절대값의 평균을 나타낸다.
 ```
 
 ![image](https://github.com/hsy0511/bbang-hyung/assets/104752580/7988b70b-9892-4fd8-bf3f-59c91c4ef58a)
 
 ```python
 from sklearn.metrics import mean_absolute_error
+// mean_absolute_error 절대값의 차이의 평균 패키지를 가져온다.
 
 mean_absolute_error(y_val, y_pred)
+// 정답값과 예측값의 차이의 평균.
 ```
 
 ![image](https://github.com/hsy0511/bbang-hyung/assets/104752580/9acba601-5c6d-4068-a9c6-2948058749c3)
@@ -965,17 +970,22 @@ mean_absolute_error(y_val, y_pred)
 #### Mean Squared Error
 - MSE
 - 정답과 예측값 차이의 제곱의 평균
+- 제곱으로 양수를 만들기 위해서
+- 제곱을해서 에러를 크게 만들어서 정확도를 더 좋은 모델을 만들때 사용한다.  
 
 ```python
 ((y_val - y_pred) ** 2).mean()
+// 절대값의 차이의 제곱의 평균
 ```
 
 ![image](https://github.com/hsy0511/bbang-hyung/assets/104752580/b36b829f-11b1-4eb1-aa06-ff12fd7ac77b)
 
 ```python
 from sklearn.metrics import mean_squared_error
+// mean_squared_error 절대값의 차이의 제곱의 평균 패키지를 가져온다.
 
 mean_squared_error(y_val, y_pred)
+// 정답값과 예측값의 차이의 제곱의 평균.
 ```
 
 ![image](https://github.com/hsy0511/bbang-hyung/assets/104752580/bbb445e0-b02f-43d8-b387-00c17a5a2743)
@@ -1007,7 +1017,9 @@ model.fit(x_train_scaled, y_train)
 
 y_pred = model.predict(x_val_scaled)
 // 정답값 예측
+
 mean_absolute_error(y_val, y_pred)
+// 예측한 값의 정확도를 확인한다.
 ```
 
 ![image](https://github.com/hsy0511/bbang-hyung/assets/104752580/fcf51783-e3e1-4912-9ead-a6dd2992d4b7)
@@ -1041,6 +1053,7 @@ y_pred = model.predict(x_val_scaled)
 // 정답값 예측
 
 mean_absolute_error(y_val, y_pred)
+// 예측한 값의 정확도를 확인한다.
 ```
 
 ![image](https://github.com/hsy0511/bbang-hyung/assets/104752580/3ae7ebb8-5ce6-40ae-8fa9-fb5ad9f2d737)
@@ -1048,6 +1061,9 @@ mean_absolute_error(y_val, y_pred)
 ### Linear Regression (선형회귀)
 ![image](https://github.com/hsy0511/bbang-hyung/assets/104752580/399937d7-e4ae-4e42-9a10-acbca1922e0e)
 
+분류에서는 선이 svm(support vector muchine)으로 svm 기준으로 분류가 되는 것 이지만
+
+선형회귀는 선이 정답값, 예측값이 된다.
 ### Ridge Regression 맛보기
 학습이 과대적합 되는 것을 방지하기위해 패널티를 부여한다. (L2 Regularazation)
 
@@ -1075,7 +1091,9 @@ model.fit(x_train, y_train)
 
 y_pred = model.predict(x_val)
 // 정답값 예측
+
 mean_absolute_error(y_val, y_pred)
+// 예측한 값의 정확도를 확인한다.
 ```
 
 ![image](https://github.com/hsy0511/bbang-hyung/assets/104752580/d8780000-77e7-4a8e-9b72-a1c6eddfc3f0)
@@ -1191,6 +1209,7 @@ y_pred = model.predict(x_val)
 // 정답값 예측
 
 mean_absolute_error(y_val, y_pred)
+// 예측한 값의 정확도를 확인한다.
 ```
 
 ![image](https://github.com/hsy0511/bbang-hyung/assets/104752580/1d26efe7-48c3-4120-9d08-f3e5e4413fa3)
@@ -1206,6 +1225,7 @@ y_pred = model.predict(x_val)
 // 정답값 예측
 
 mean_absolute_error(y_val, y_pred)
+// 예측한 값의 정확도를 확인한다.
 ```
 
 ![image](https://github.com/hsy0511/bbang-hyung/assets/104752580/6eeb6162-f645-40dd-aa5a-d5377ce2205a)
