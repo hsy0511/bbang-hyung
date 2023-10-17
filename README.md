@@ -687,7 +687,7 @@ blue = x[y == 1]
 // x 데이터에서 y가 0이면 red, 1이면 blue가 나오게 한다.
 
 new_input = [[random.uniform(-2, 2), random.uniform(-2, 2)]]
-// -2부터 2 사이의 실수 중에서 난수값을 리턴
+// -2부터 2 사이의 실수 중에서 랜덤 값을 리턴
 
 plt.figure(figsize=(10, 10))
 // 가로 10 세로 10짜리 차트를 만든다.
@@ -806,37 +806,57 @@ for k in range(1, 11):
 ```python
 from sklearn.datasets import load_boston
 import pandas as pd
+// load_boston 데이터셋 패키지를 가져온다.
+// 판다스 라이브러리를 가져온다.
 
 data = load_boston()
+// data에 load_boston를 데이터셋해준다.
 
 df = pd.DataFrame(data['data'], columns=data['feature_names'])
+// 데이터 프레임에 데이터 값은 load_boston을 데이터셋한 data를 넣어주고, 컬럼은 data의 feature_names로 넣어준다.
+
 df['target'] = data['target']
+// 데이터 프레임에 타겟 데이터는 data의 타겟 데이터로 넣어준다.
 
 df.tail()
+// 하위 5개의 데이터를 뽑아낸다.
 ```
 
 ![image](https://github.com/hsy0511/bbang-hyung/assets/104752580/78b583c1-2847-4a19-955d-8c0e40e0a7a0)
 
 #### 데이터 시각화
-- Distribution plot
+- Distribution plot(분포 차트)
 
 ```python
 import matplotlib.pyplot as plt
 import seaborn as sns
+// matplotlib, drsborn 라이브러리를 가져온다.
 
 sns.displot(x=df['target'])
+// x축이 타겟 값인 분포차트를 그린다
+
 plt.show()
+차트를 보여준다.
 ```
 
 ![image](https://github.com/hsy0511/bbang-hyung/assets/104752580/a87fe7de-76ec-405e-8082-dcb302ad0290)
 
-- correlation matrix
+- correlation matrix(상관 행렬)
 
 ```python
 plt.figure(figsize=(10, 10))
+// 가로10 세로10인 차트를 생성한다.
+
 corr = df.corr()
+// 누락값을 제외하고 전체 데이터에 상관도를 계산함
 sns.heatmap(corr, annot=True, square=True, cmap='PiYG', vmin=-1, vmax=1)
+// annot : 수치표시
+// square : 틀을 정사각형으로 지정 (false 지정시 직사각형)
+// camp : 색상변경
+// vmin, vmax : 최대 최소 기준점 변경
+
 plt.show()
+차트를 보여준다.
 ```
 
 ![image](https://github.com/hsy0511/bbang-hyung/assets/104752580/dd74eb7f-9f3b-4fbc-8cbc-c4b14c2e512f)
@@ -844,11 +864,16 @@ plt.show()
 #### 데이터셋 분할
 ```python
 from sklearn.model_selection import train_test_split
+// train_test_split 패키지를 가져온다.
 
 x_train, x_val, y_train, y_val = train_test_split(df.drop(columns=['target']), df['target'], test_size=0.2, random_state=2021)
+// train_test_split를 사용하여 x에는 정규화된 데이터를 넣어주고 y에는 타겟을 넣어주고 val은 20%, train은 80%로 랜덤으로 나눈다.
 
 print(x_train.shape, y_train.shape)
+// 몇개씩 나뉘었는지 shape를 사용하여 알아본다.
+
 print(x_val.shape, y_val.shape)
+// 몇개씩 나뉘었는지 shape를 사용하여 알아본다.
 ```
 
 ![image](https://github.com/hsy0511/bbang-hyung/assets/104752580/993287b4-69ea-433a-a7c4-0a802aabc1a8)
@@ -856,24 +881,30 @@ print(x_val.shape, y_val.shape)
 #### 모델 정의
 ```python
 from sklearn.linear_model import LinearRegression
+// LinearRegression 모델을 가져온다
 
 model = LinearRegression()
+// LinearRegression 모델을 정의한다.
 ```
 #### 학습
 ```python
 model.fit(x_train, y_train)
+// 데이터를 학습시킨다.
 ```
 #### 검증
 ```python
 x_val[:5]
+// x_val 배열에 0번째부터 4번째까지 뽑는다.
 ```
 
 ![image](https://github.com/hsy0511/bbang-hyung/assets/104752580/20957ee3-d857-40d7-8166-6dd5f43520d4)
 
 ```python
 y_pred = model.predict(x_val)
+// x_val 데이터 값을 예측한다.
 
 print(y_pred[:5])
+// 에측한 값을 0부터 4까지 뽑는다.
 ```
 
 ![image](https://github.com/hsy0511/bbang-hyung/assets/104752580/1b945e6d-d6ac-41c7-843f-3a1dc488be1c)
@@ -884,20 +915,25 @@ print(y_pred[:5])
 
 ```python
 print(list(y_val[:5]))
+// y_val을 리스트형태로 0부터 4까지 출력한다.
 
 print(list(y_pred[:5]))
+// y_pred를 리스트형태로 0부터 4까지 출력한다.
 ```
 
 ![image](https://github.com/hsy0511/bbang-hyung/assets/104752580/6d1602bb-3e9e-461a-8043-fcaacf923cd6)
 
 ```python
 y_val[:5] - y_pred[:5]
+// y_val 0~4와 y_pred 0~4를 뺀다.
 ```
 
 ![image](https://github.com/hsy0511/bbang-hyung/assets/104752580/b7b97f4e-bb7e-43fa-b3be-b7faf1dbe941)
 
 ```python
 abs(y_val[:5] - y_pred[:5])
+// y_val 0~4와 y_pred 0~4를 빼고 절대값으로 나타낸다.
+// abs : 절대 값
 ```
 
 ![image](https://github.com/hsy0511/bbang-hyung/assets/104752580/e9322218-b204-44a9-9fc6-03a65ce4f9cd)
@@ -947,24 +983,30 @@ mean_squared_error(y_val, y_pred)
 #### 표준화
 ```python
 from sklearn.preprocessing import StandardScaler
+// StandardScaler 표준화 패키지를 가져온다
 
 scaler = StandardScaler()
+// StandardScaler() 객체 생성
 
 x_train_scaled = scaler.fit_transform(x_train)
 x_val_scaled = scaler.fit_transform(x_val)
+// x_train, x_val 데이터 값을 표준화시켜서 x_train_scaled, x_val_scaled 변수에 저장한다.
 
 print(x_train_scaled[:5])
+// x_train_scaled 0~4까지 출력한다.
 ```
 
 ![image](https://github.com/hsy0511/bbang-hyung/assets/104752580/98c6f379-4e65-4fd3-a7a2-48516aabfb3a)
 
 ```python
 model = LinearRegression()
+// 모델 정의
 
 model.fit(x_train_scaled, y_train)
+// 모델 훈련
 
 y_pred = model.predict(x_val_scaled)
-
+// 정답값 예측
 mean_absolute_error(y_val, y_pred)
 ```
 
@@ -973,23 +1015,30 @@ mean_absolute_error(y_val, y_pred)
 #### 정규화
 ```python
 from sklearn.preprocessing import MinMaxScaler
+// MinMaxScaler 정규화 패키지를 가져온다
 
 scaler = MinMaxScaler()
+// MinMaxScaler() 객체를 생성한다.
 
 x_train_scaled = scaler.fit_transform(x_train)
 x_val_scaled = scaler.fit_transform(x_val)
+// x_train, x_val 데이터 값을 정규화시켜서 x_train_scaled, x_val_scaled 변수에 저장한다.
 
 print(x_train_scaled[:5])
+// x_train_scaled 0~4까지 출력한다.
 ```
 
 ![image](https://github.com/hsy0511/bbang-hyung/assets/104752580/afd255f7-f357-4083-aff6-eacf52a5ed7f)
 
 ```python
 model = LinearRegression()
+// 모델 정의
 
 model.fit(x_train_scaled, y_train)
+// 모델 훈련
 
 y_pred = model.predict(x_val_scaled)
+// 정답값 예측
 
 mean_absolute_error(y_val, y_pred)
 ```
@@ -1016,13 +1065,16 @@ https://scikit-learn.org/stable/modules/classes.html#module-sklearn.linear_model
 
 ```python
 from sklearn.linear_model import Ridge
+// Ridge 모델을 가져온다
 
 model = Ridge()
+// 모델 정의
 
 model.fit(x_train, y_train)
+// 모델 훈련
 
 y_pred = model.predict(x_val)
-
+// 정답값 예측
 mean_absolute_error(y_val, y_pred)
 ```
 
@@ -1051,13 +1103,20 @@ https://scikit-learn.org/stable/datasets/toy_dataset.html#diabetes-dataset
 ```python
 from sklearn.datasets import load_diabetes
 import pandas as pd
+// load_boston 데이터셋 패키지를 가져온다.
+// 판다스 라이브러리를 가져온다.
 
 data = load_diabetes()
+// load_diabetes를 data안에 데이터 셋 시켜준다.
 
 df = pd.DataFrame(data['data'], columns=data['feature_names'])
+// 데이터 프레임에 데이터 값은 load_boston을 데이터셋한 data를 넣어주고, 컬럼은 data의 feature_names로 넣어준다.
+
 df['target'] = data['target']
+// 데이터 프레임에 타겟 데이터는 data의 타겟 데이터로 넣어준다.
 
 df.head()
+// 상위 데이터 5개를 뽑는다.
 ```
 
 ![image](https://github.com/hsy0511/bbang-hyung/assets/104752580/379e1ede-1ec4-4182-80cc-6da83303beb8)
@@ -1067,22 +1126,35 @@ df.head()
 
 ```python
 sns.boxplot(y=df['age'])
+// y 축이 age인 박스 차트를 그린다.
 ```
 
 ![image](https://github.com/hsy0511/bbang-hyung/assets/104752580/65ac2b9c-3719-4707-9d40-27e07c4fac27)
 
 ```python
 sns.displot(x=df['target'])
+// x축이 타겟인 분포 차트를 그린다.
+
 plt.show()
+// 차트를 보여준다.
 ```
 
 ![image](https://github.com/hsy0511/bbang-hyung/assets/104752580/c1c60702-d69c-4a27-bb97-ea6d8724a90a)
 
 ```python
 plt.figure(figsize=(10, 10))
+// 가로10 세로10인 차트를 생성한다.
+
 corr = df.corr()
+// 누락값을 제외하고 전체 데이터에 상관도를 계산함
 sns.heatmap(corr, annot=True, square=True, cmap='PiYG', vmin=-1, vmax=1)
+// annot : 수치표시
+// square : 틀을 정사각형으로 지정 (false 지정시 직사각형)
+// camp : 색상변경
+// vmin, vmax : 최대 최소 기준점 변경
+
 plt.show()
+차트를 보여준다.
 ```
 
 ![image](https://github.com/hsy0511/bbang-hyung/assets/104752580/003922a6-c7c4-4e11-8c31-d234746392a9)
@@ -1090,11 +1162,16 @@ plt.show()
 #### 데이터셋 분할
 ```python
 from sklearn.model_selection import train_test_split
+// train_test_split 패키지를 가져온다.
 
 x_train, x_val, y_train, y_val = train_test_split(df.drop(columns=['target']), df['target'], test_size=0.2, random_state=2021)
+// train_test_split를 사용하여 x에는 정규화된 데이터를 넣어주고 y에는 타겟을 넣어주고 val은 20%, train은 80%로 랜덤으로 나눈다.
 
 print(x_train.shape, y_train.shape)
+// 몇개씩 나뉘었는지 shape를 사용하여 알아본다.
+
 print(x_val.shape, y_val.shape)
+// 몇개씩 나뉘었는지 shape를 사용하여 알아본다.
 ```
 
 ![image](https://github.com/hsy0511/bbang-hyung/assets/104752580/18921f4a-fb6a-4598-bee2-a638774f49fd)
@@ -1102,12 +1179,16 @@ print(x_val.shape, y_val.shape)
 #### 모델 정의, 학습, 검증
 ```python
 from sklearn.linear_model import SGDRegressor
+// SGDRegressor 모델을 가져온다.
 
 model = SGDRegressor()
+// 모델정의
 
 model.fit(x_train, y_train)
+// 모델 훈련
 
 y_pred = model.predict(x_val)
+// 정답값 예측
 
 mean_absolute_error(y_val, y_pred)
 ```
@@ -1116,10 +1197,13 @@ mean_absolute_error(y_val, y_pred)
 
 ```python
 model = LinearRegression()
+// 모델 정의
 
 model.fit(x_train, y_train)
+// 모델 훈련
 
 y_pred = model.predict(x_val)
+// 정답값 예측
 
 mean_absolute_error(y_val, y_pred)
 ```
@@ -1129,9 +1213,16 @@ mean_absolute_error(y_val, y_pred)
 #### 검증 결과 시각화
 ```python
 plt.figure(figsize=(8, 6))
+// 가로 8 세로 6 차트를 그린다.
+
 sns.scatterplot(x=x_val['bmi'], y=y_val, color='b')
+// 정답값을 파란색으로 나타내는 산점도 차트를 그린다.
+
 sns.scatterplot(x=x_val['bmi'], y=y_pred, color='r')
+// 예측값을 빨간색으로 나타내는 산점도 차트를 그린다.
+
 plt.show()
+// 차트를 나타낸다.
 ```
 
 ![image](https://github.com/hsy0511/bbang-hyung/assets/104752580/b4870b65-7c81-4bf7-9e05-8632dbade10c)
